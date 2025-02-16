@@ -1,0 +1,20 @@
+{
+  "name": "laocc/address",
+  "description": "中国行政区划地址库",
+  "homepage": "https://github.com/laocc/address",
+  "authors": [
+    {
+      "name": "fazo",
+      "email": "fazo@qq.com"
+    }
+  ],
+  "require": {
+    "php": ">8.1.0",
+    "laocc/http": ">1.0"
+  },
+  "autoload": {
+    "psr-4": {
+      "laocc\\address\\": "src/"
+    }
+  }
+}
