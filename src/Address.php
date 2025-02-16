@@ -1,36 +1,45 @@
 <?php
 
-namespace address;
-
-const _AddressVersion = '';
+namespace laocc\address;
 
 class Address
 {
+    private string $dbPath;
+    private string $version = '202012';
 
-    public function objects()
+    public function __construct(string $version = null)
     {
-        $area = file_get_contents(_ROOT . _AddressVersion . '/china.object.json');
-        $area = json_decode($area, true);
+        if ($version) $this->version = $version;
+        $this->dbPath = dirname(__DIR__, 2) . '/data/' . $this->version;
     }
 
-    public function names()
+    public function object()
     {
-        $area = file_get_contents(_ROOT . _AddressVersion . '/china.code.json');
+        $area = file_get_contents($this->dbPath . '/china.object.json');
+        $area = json_decode($area, true);
+        return $area;
+    }
+
+    public function array()
+    {
+        $area = file_get_contents($this->dbPath . '/china.array.json');
+        $area = json_decode($area, true);
+        return $area;
+    }
+
+    public function name_code()
+    {
+        $area = file_get_contents($this->dbPath . '/china.code.json');
+        $area = json_decode($area, true);
+        return $area;
+    }
+
+    public function code_name()
+    {
+        $area = file_get_contents($this->dbPath . '/china.code.json');
         $area = json_decode($area, true);
         $area['000000'] = ['nick' => '未知'];
-    }
-
-    public function codes()
-    {
-        $area = file_get_contents(_ROOT . _AddressVersion . '/china.code.json');
-        $area = json_decode($area, true);
-        $area['000000'] = ['nick' => '未知'];
-    }
-
-    public function arrays()
-    {
-        $area = file_get_contents(_ROOT . _AddressVersion . '/china.array.json');
-        $area = json_decode($area, true);
+        return $area;
     }
 
 }
