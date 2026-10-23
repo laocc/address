@@ -7,7 +7,7 @@ class Address
     private string $dbPath;
     private string $version = '202012';
 
-    public function __construct(string $version = null)
+    public function __construct(?string $version = null)
     {
         if ($version) $this->version = $version;
         $this->dbPath = dirname(__DIR__, 2) . '/data/' . $this->version;
